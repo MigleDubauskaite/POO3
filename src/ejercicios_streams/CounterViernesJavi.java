@@ -6,6 +6,10 @@ public class CounterViernesJavi {
 	private int maxValue = 100_000;
 	private String model = "N-COUNTER";
 
+	public int getValue() {
+		return value;
+	}
+
 	public CounterViernesJavi() {
 	}
 
@@ -23,6 +27,7 @@ public class CounterViernesJavi {
 	public CounterViernesJavi(CounterViernesJavi counter) {
 		value = counter.value;
 		maxValue = counter.maxValue;
+		model = counter.model;
 	}
 
 	@Override
@@ -42,7 +47,6 @@ public class CounterViernesJavi {
 			value += n;
 			return true;
 		}
-		value = maxValue;
 		return false;
 	}
 

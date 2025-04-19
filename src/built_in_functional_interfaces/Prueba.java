@@ -144,7 +144,7 @@ public class Prueba {
 		
 		//////////////////////
 		///
-		// BIUNARY OPERATOR
+		// BINARY OPERATOR
 		System.out.println("\n\nBINARY OPERATOR\n===========\n");
 		
 		BinaryOperator<String> bo1 = String::concat;

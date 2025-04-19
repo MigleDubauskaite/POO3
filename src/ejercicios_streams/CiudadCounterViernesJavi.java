@@ -21,4 +21,8 @@ public class CiudadCounterViernesJavi {
 		return contadores;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+	
 }

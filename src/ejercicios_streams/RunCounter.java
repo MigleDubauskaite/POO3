@@ -1,7 +1,11 @@
 package ejercicios_streams;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Random;
 
 public class RunCounter {
@@ -12,11 +16,13 @@ public class RunCounter {
 
 		Random random = new Random();
 
+		/*
 		CiudadCounterViernesJavi ciudad1 = new CiudadCounterViernesJavi("Ciudad 1");
 
 		for (int i = 0; i < 10_000; i++) {
 			ciudad1.addCounter(new CounterViernesJavi(50_000));
 		}
+		*/
 
 		/*
 		 * Crea 10 ciudades, cada una de ellas con un número grande de contadores,
@@ -50,6 +56,79 @@ public class RunCounter {
 				}
 			}
 		}
+		
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.println(ciudades.get(3).getContadores().get(i));
+		}
+		
+
+		// maximo consumo total de contadores
+		
+		// mínimo para una ciudad
+		
+		CiudadCounterViernesJavi miCiudad = ciudades.get(0);
+		
+		Optional<Integer> minimoParaCiudad = miCiudad.getContadores().stream()
+			.map(c -> c.getValue())
+			// no have falta ponerlo, porque por el defecto sale el orden correcto: 7- 8
+//			.sorted((v1, v2) -> v1 - v2)
+			.sorted()
+//			.sorted(Comparator.reverseOrder())
+			.findFirst()
+			;
+		System.out.printf("Mínimo para la ciudad %s: ", ciudades.get(0).getNombre());
+		minimoParaCiudad.ifPresent(System.out::println);
+
+		
+		// máximo para una ciudad
+				
+		Optional<Integer> maximoParaCiudad = miCiudad.getContadores().stream()
+			.map(c -> c.getValue())
+//			revierte el orden 
+//			.sorted((v1, v2) -> - v1 + v2)
+			.sorted(Comparator.reverseOrder())
+			.findFirst()
+			;
+		System.out.printf("Máximo para la ciudad %s: ", ciudades.get(0).getNombre());
+		maximoParaCiudad.ifPresent(System.out::println);
+		
+		
+		// media para una ciudad
+		OptionalDouble mediaParaCiudad = miCiudad.getContadores().stream()
+				.mapToInt(c -> c.getValue())
+				.average();
+		
+		System.out.println(miCiudad.getContadores().stream()
+				.mapToInt(c -> c.getValue()).summaryStatistics());
+		
+		System.out.println();
+		System.out.println(mediaParaCiudad);
+		
+		
+		// máximo
+		OptionalInt maximoParaCiudad2 = miCiudad.getContadores().stream()
+			.mapToInt(c -> c.getValue())
+			.max()
+		;
+		System.out.println();
+		System.out.println(maximoParaCiudad2);
+		
+		// mínimo
+		OptionalInt minimoParaCiudad2 = miCiudad.getContadores().stream()
+				.mapToInt(c -> c.getValue())
+				.min()
+			;
+		System.out.println();
+		System.out.println(minimoParaCiudad2.getAsInt());
+		
+		
+		// suma
+		int suma = miCiudad.getContadores().stream()
+				.mapToInt(c -> c.getValue())
+				.sum()
+				;
+		
 		
 		// flatMap
 

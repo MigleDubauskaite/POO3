@@ -143,7 +143,8 @@ public class Test {
                 .limit(15)
                 .map(Author::getSurname)
                 .map(String::toUpperCase)    
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()))
+        ;
 
         
 

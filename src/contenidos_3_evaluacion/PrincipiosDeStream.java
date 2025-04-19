@@ -32,6 +32,7 @@ public class PrincipiosDeStream {
 		
 		
 		System.out.println();
+		System.out.println();
 		List<Integer> lista2 = new ArrayList<>();
 		lista2.add(1);
 		lista2.add(3);
